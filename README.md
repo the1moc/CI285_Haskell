@@ -38,6 +38,7 @@ Any packages not named that are required will also need to be installed. One met
 
 *********************************
 NOTES
+
 I have added a delete functionality to the webserver to demonstrate adding external JSON data to the database. Therefore, if when adding JSON data from a website a second time, use the delete form to remove those dates and re-add them if required. If data is inputted that is already in the database, the page shall not load due to a non-unique constraint. If wanting to insert the information still, either remove the specific data OR delete all the data using the two forms at the bottom.
 
 The functions that display all the temperatures, the max temperate and the minimum temperature all have an input text box that they do not require. Removing this input textbox causes the database to show historic data, and will only show new information upon restarting. Therefore I have left them in, even if they look out of place. 
