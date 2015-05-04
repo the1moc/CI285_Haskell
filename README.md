@@ -12,6 +12,10 @@ For the server: - http://www.happstack.com/docs/crashcourse/index.html
                 - https://hackage.haskell.org/package/happstack-server 
                 - https://hackage.haskell.org/package/blaze-html
 
+*******************************
+I created the web app in this manner by interpreting the basic points of what the assignment required. Therefore I felt using forms to make POST and GET requests was the most straightforward and clean way. It is possible to input local data from the user end, input data in JSON format from an external website, and also perform several queries from the default page of the server. There are also options to delete specific rows, or to delete all data from the database at once, though these are more for testing purposes.
+
+If more was to be added, I think adding options for users to input specific requests on the database would be useful. For example, having a default form that gave them options for their statement (e.g. SELECT, INSERT, DELETE) and then their data/conditions. This would require having different levels of control to prevent misuse. 
 ********************************
 BUILDING THE APPLICATION
 
