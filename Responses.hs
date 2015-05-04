@@ -66,28 +66,35 @@ defaultHtml =
 						  ! H.name "upload"
 
 					p $ br
-						
-				b $ h3 "Use the button below to list all the dates in the data"
+					
+				b $ h3 "Use the button below to list all temperature"
 				form ! H.enctype "multipart/form-data"
-					! H.method "GET"
+					! H.method "POST"
 					! H.action "/all" $ do
-					H.label " Get all Temperatures: "
+					H.label " List all Temperatures (no input required) "
+					H.label "x : " >> input ! H.type_ "text"
+											 ! H.name "x"
+											 ! H.size "10"
 					input ! H.type_ "Submit"
 						  ! H.name "upload"
 
 				b $ h3 "Use the button below to list the max temperature and date"
 				form ! H.enctype "multipart/form-data"
-					! H.method "GET"
+					! H.method "POST"
 					! H.action "/max" $ do
-					H.label " Get max Temperature "
+					H.label " Get max Temperature (no input required) "  >> input ! H.type_ "text"
+											 ! H.name "x"
+											 ! H.size "10"
 					input ! H.type_ "Submit"
 						  ! H.name "upload"
 
 				b $ h3 "Use the button below to list the min temperature and date"
 				form ! H.enctype "multipart/form-data"
-					! H.method "GET"
+					! H.method "POST"
 					! H.action "/min" $ do
-					H.label " Get min Temperature "
+					H.label " Get min Temperature (no input required) "  >> input ! H.type_ "text"
+											 ! H.name "x"
+											 ! H.size "10"
 					input ! H.type_ "Submit"
 						  ! H.name "upload"
 
@@ -103,13 +110,16 @@ defaultHtml =
 					input ! H.type_ "Submit"
 						  ! H.name "upload"
 						  
-				b $ i $ h3 "Use this to remove *ALL* data from the database *DELETES DATE*"
+				b $ i $ h3 "Use this to remove ALL DATA *DELETES DATE*"
 				form ! H.enctype "multipart/form-data"
 					! H.method "POST"
-					! H.action "/delall" $ do
-					H.label "DELETE ALL DATA : " 
+					! H.action "/dall" $ do
+					H.label "Delete ALL (no input required) " >> input ! H.type_ "text"
+																		! H.name "x"
+																		! H.size "10"
 					input ! H.type_ "Submit"
 						  ! H.name "upload"
+
 						  
 --------------------------------------------------------------------------------------------------------------------------------
 --Result pages
@@ -140,18 +150,6 @@ resultPagePost =
 			H.body $ do
 				p $ toHtml $ unsafePerformIO $ insertDb date (read temp)
 				
---Inserting information as HTML				
-resultPageAbo :: ServerPart Response
-resultPageAbo = 
-	do method POST
-	   x <- look "x"
-	   ok $ toResponse $
-		 html $ do
-			H.head $ do
-				title "Happstack Server"
-				h1 "Temperatures Information"
-			H.body $ do
-				ul $ forM_  (convertList $ unsafePerformIO $ aboDb (read x)) (li . toHtml)
 				
 --Result Page Delete				
 resultPageDel :: ServerPart Response
@@ -181,39 +179,65 @@ resultPageURL =
 				p "done"
 
 				
---Simple requests result page
-resultPageSingle :: String -> ServerPart Response
-resultPageSingle x = 
-	do method GET
-	   ok $ toResponse $
-		 html $ do
-			H.head $ do
-				title "Happstack Server"
-				h1 "Temperatures Information"
-			H.body $ do
-				p $ toHtml $ x
-				
---List input result page
-resultPageList :: [String]-> ServerPart Response
-resultPageList xs = 
-	do method GET
-	   ok $ toResponse $
-		 html $ do
-			H.head $ do
-				title "Happstack Server"
-				h1 "Temperatures Information"
-			H.body $ do
-				ul $ forM_ xs (li . toHtml)
-				
---Delete ALL data
-resultPageDelAll :: ServerPart Response
-resultPageDelAll = 
+--Max request result page
+resultPageMax :: ServerPart Response
+resultPageMax = 
 	do method POST
+	   x <- look "x"
 	   ok $ toResponse $
 		 html $ do
 			H.head $ do
 				title "Happstack Server"
 				h1 "Temperatures Information"
 			H.body $ do
-				p $ toHtml $ unsafePerformIO $ delAllDb
-
+				p $ toHtml $ convert $ unsafePerformIO $ maxDb
+				
+--Min request result page
+resultPageMin :: ServerPart Response
+resultPageMin = 
+	do method POST
+	   x <- look "x"
+	   ok $ toResponse $
+		 html $ do
+			H.head $ do
+				title "Happstack Server"
+				h1 "Temperatures Information"
+			H.body $ do
+				p $ toHtml $ convert $ unsafePerformIO $ minDb
+				
+--Inserting information as HTML				
+resultPageAbo :: ServerPart Response
+resultPageAbo = 
+	do method POST
+	   x <- look "x"
+	   ok $ toResponse $
+		 html $ do
+			H.head $ do
+				title "Happstack Server"
+				h1 "Temperatures Information"
+			H.body $ do
+				ul $ forM_  (convertList $ unsafePerformIO $ aboDb (read x)) (li . toHtml)
+				
+resultPageAll :: ServerPart Response
+resultPageAll = 
+	do method POST
+	   x <- look "x"
+	   ok $ toResponse $
+		 html $ do
+			H.head $ do
+				title "Happstack Server"
+				h1 "Temperatures Information"
+			H.body $ do
+				ul $ forM_  (convertList $ unsafePerformIO $ allDb (read x)) (li . toHtml)
+				
+resultPageDall :: ServerPart Response
+resultPageDall = 
+	do method POST
+	   x <- look "x"
+	   ok $ toResponse $
+		 html $ do
+			H.head $ do
+				title "Happstack Server"
+				h1 "Temperatures Information"
+			H.body $ do
+				p $ toHtml $ unsafePerformIO $ delAllDb (read x)

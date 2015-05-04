@@ -46,13 +46,13 @@ aboDb x = do
 	close conn
 	return r
 	
-allDb :: IO [Temperature]
-allDb = do
+allDb :: Integer -> IO [Temperature]
+allDb x = do
 	conn <- open "finaldatabase.db"
-	r <- query_ conn "SELECT * FROM Tempdata" :: IO [Temperature]
+	r <- query conn "SELECT date, temp FROM Tempdata WHERE temp > ?" (Only(-1 :: Integer)) :: IO [Temperature]
 	close conn
 	return r
-	
+
 jsonDb :: (String, Integer) -> IO String
 jsonDb xs = do
 	conn <- open "finaldatabase.db"
@@ -66,9 +66,9 @@ delDb dte = do
 	execute conn "DELETE FROM Tempdata where date = ?" (Only (dte))
 	close conn
 	return "If that data was in the database, it has been removed"
-	
-delAllDb :: IO String
-delAllDb = do
+
+delAllDb :: Integer -> IO String
+delAllDb x = do
 	conn <- open "finaldatabase.db"
 	execute_ conn "DELETE FROM Tempdata"
 	close conn

@@ -22,12 +22,12 @@ handlers =
        msum [ dir "get"  $ resultPageGet 
            	, dir "post" $ resultPagePost
 			, dir "url"  $ resultPageURL
-			, dir "max"  $ resultPageSingle $ convert $ unsafePerformIO $ maxDb
-			, dir "min"  $ resultPageSingle $ convert $ unsafePerformIO $ minDb
-			, dir "all"  $ resultPageList $ convertList $ unsafePerformIO $ allDb
+			, dir "max"  $ resultPageMax
+			, dir "min"  $ resultPageMin
 			, dir "abo"  $ resultPageAbo
 			, dir "del" $ resultPageDel
-			, dir "delall" $ resultPageDelAll
+			, dir "all" $ resultPageAll
+			, dir "dall" $ resultPageDall
 			, defaultHtml
          	   ]
 
