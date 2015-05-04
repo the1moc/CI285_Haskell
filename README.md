@@ -1,6 +1,7 @@
-# CI285_Haskell
-Simple web server
+# CI285_Haskell Simple web server
+
 Malcolm Campbell
+
 ********************************
 The following websites were used when creating this project (specific URLs used when possible)
 
@@ -43,3 +44,4 @@ I have added a delete functionality to the webserver to demonstrate adding exter
 
 The functions that display all the temperatures, the max temperate and the minimum temperature all have an input text box that they do not require. Removing this input textbox causes the database to show historic data, and will only show new information upon restarting. Therefore I have left them in, even if they look out of place. 
 
+The PDF submitted is old, but I am not able to change it. The issues highlighted about errors within certain functions that query the database have been resolved.
