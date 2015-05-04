@@ -37,6 +37,12 @@ Any packages not named that are required will also need to be installed. One met
 2. Compile file 'Main.hs' using the command 'ghc --make Main.hs'.
 3. To run the file, simply type ./Main and the server should run
 
+Current data in the database is shown below:
+
+12-03-1996 -- 3°C
+12-03-1997 -- 13°C
+12-03-1998 -- 19°C
+
 *********************************
 NOTES
 
