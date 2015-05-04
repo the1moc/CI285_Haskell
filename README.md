@@ -38,3 +38,8 @@ I have added a delete functionality to the webserver to demonstrate adding exter
 
 The show all function of the form sometimes does not update once a new temperature has been added, though all other functions do. To have this correctly show recently added data, the server must be restarted. 
 
+*************************************
+ISSUES
+When new data is inserted, the functions to display (all, the max, the mix) temperatures sometimes do now show the uddated information. However when querying the database for the new data, the results appear confirming that the data has been added.
+
+Once the server is restarted, these functions show previously inserted data.
