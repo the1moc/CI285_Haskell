@@ -21,21 +21,51 @@ defaultHtml =
 				title "Happstack Server"
 				h1  "Temperatures Information"
 			H.body $ do
-				b $ h3 "Query the Database (Format: DD-MM-YYYY)"							
+				b $ h2 "Querying the database"							
+				form ! H.enctype "multipart/form-data"
+					! H.method "POST"
+					! H.action "/all" $ do
+					H.label " List all Temperatures: " >> input ! H.type_ "submit"
+											 ! H.name "x"
+											 ! H.size "10"
+			
+				form ! H.enctype "multipart/form-data"
+					! H.method "POST"
+					! H.action "/max" $ do
+					H.label " Get Max Temperature: "  >> input ! H.type_ "submit"
+											 ! H.name "x"
+											 ! H.size "10"
+				
+				form ! H.enctype "multipart/form-data"
+					! H.method "POST"
+					! H.action "/min" $ do
+					H.label " Get Min Temperature: "  >> input ! H.type_ "submit"
+											 ! H.name "x"
+											 ! H.size "10"
+		
 				form ! H.enctype "multipart/form-data"
 					! H.method "GET"
 					! H.action "/get" $ do
-					H.label "Date: " >> input ! H.type_ "text"
+					H.label "Query database by date: " >> input ! H.type_ "text"
 											 ! H.name "date"
 											 ! H.size "10"
 					input ! H.type_ "submit"
 							! H.name "upload"
 				
-				b $ h3 "Please use the form below to submit data to the database (Format: DD-MM-YYYY | 7)"
+				form ! H.enctype "multipart/form-data"
+					! H.method "POST"
+					! H.action "/abo" $ do
+					H.label " Get temperatures above x: " >> input ! H.type_ "text"
+											 ! H.name "x"
+											 ! H.size "10"
+					input ! H.type_ "Submit"
+						  ! H.name "upload"
+							
+				b $ h2 "Inserting into Database"	
 				form ! H.enctype "multipart/form-data"
 					! H.method "POST"
 					! H.action "/post" $ do
-					H.label "Date: " >> input ! H.type_ "text"
+					H.label "Insert into database - Date: " >> input ! H.type_ "text"
 											 ! H.name "date"
 											 ! H.size "10"
 					H.label "  Temp: " >> input ! H.type_ "text"
@@ -44,81 +74,33 @@ defaultHtml =
 					input ! H.type_ "submit"
 							! H.name "upload"
 							
-				b $ h3 "Use the form below to get JSON Data and insert into the DB"
 				form ! H.enctype "multipart/form-data"
 					! H.method "POST"
 					! H.action "/url" $ do
-					H.label "URL: " >> input ! H.type_ "text"
+					H.label "Insert JSON Data from URL: " >> input ! H.type_ "text"
 											 ! H.name "url"
 											 ! H.size "10"
 					input ! H.type_ "Submit"
 						  ! H.name "upload"
 						  
-				b $ h3 "Use the button below to list temperatures above x"
-				form ! H.enctype "multipart/form-data"
-					! H.method "POST"
-					! H.action "/abo" $ do
-					H.label " Get temperatures above: "
-					H.label "x : " >> input ! H.type_ "text"
-											 ! H.name "x"
-											 ! H.size "10"
-					input ! H.type_ "Submit"
-						  ! H.name "upload"
-
-					p $ br
-					
-				b $ h3 "Use the button below to list all temperature"
-				form ! H.enctype "multipart/form-data"
-					! H.method "POST"
-					! H.action "/all" $ do
-					H.label " List all Temperatures (no input required) "
-					H.label "x : " >> input ! H.type_ "text"
-											 ! H.name "x"
-											 ! H.size "10"
-					input ! H.type_ "Submit"
-						  ! H.name "upload"
-
-				b $ h3 "Use the button below to list the max temperature and date"
-				form ! H.enctype "multipart/form-data"
-					! H.method "POST"
-					! H.action "/max" $ do
-					H.label " Get max Temperature (no input required) "  >> input ! H.type_ "text"
-											 ! H.name "x"
-											 ! H.size "10"
-					input ! H.type_ "Submit"
-						  ! H.name "upload"
-
-				b $ h3 "Use the button below to list the min temperature and date"
-				form ! H.enctype "multipart/form-data"
-					! H.method "POST"
-					! H.action "/min" $ do
-					H.label " Get min Temperature (no input required) "  >> input ! H.type_ "text"
-											 ! H.name "x"
-											 ! H.size "10"
-					input ! H.type_ "Submit"
-						  ! H.name "upload"
-
-					p $ br
-					
-				b $ i $ h3 "Use this to remove a date row from the database *DELETES DATE*"
+				b $ h2 "Deleting from Database"	
+		
 				form ! H.enctype "multipart/form-data"
 					! H.method "POST"
 					! H.action "/del" $ do
-					H.label "Delete : " >> input ! H.type_ "text"
+					H.label "Delete entry - Date: " >> input ! H.type_ "text"
 											 ! H.name "del"
 											 ! H.size "10"
 					input ! H.type_ "Submit"
 						  ! H.name "upload"
-						  
-				b $ i $ h3 "Use this to remove ALL DATA *DELETES DATE*"
+
 				form ! H.enctype "multipart/form-data"
 					! H.method "POST"
 					! H.action "/dall" $ do
-					H.label "Delete ALL (no input required) " >> input ! H.type_ "text"
-																		! H.name "x"
-																		! H.size "10"
-					input ! H.type_ "Submit"
-						  ! H.name "upload"
+					b $ H.label "Delete ALL Data: " >> input ! H.type_ "submit"
+													! H.name "x"
+													! H.size "10"
+					
 
 						  
 --------------------------------------------------------------------------------------------------------------------------------
