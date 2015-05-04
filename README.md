@@ -21,11 +21,11 @@ BUILDING THE APPLICATION
 
 PRE-REQUISITES
 Ensure all modules are installed that are required for the project. These should/may include, but are not limited to:
-happstack
-aeson
-HTTP-4000
-sqlite-simple
-blaze-html
+happstack,
+aeson,
+HTTP-4000,
+sqlite-simple,
+blaze-html,
 direct-sqlite
 
 Any packages not named that are required will also need to be installed. One method of doing this is to use cabal with the commands 'cabal install (insert-package-here). Also ensure the .db file that is present with the haskell source files is in the same directory. 
