@@ -38,14 +38,7 @@ Any packages not named that are required will also need to be installed. One met
 
 *********************************
 NOTES
-When a duplicate date is added to the database, there will be a unique constraint error and the page simply shall not load. This error will be shown in the terminal where the server is running. Simply going back to the previous page will allow you to try re-entering data. 
+I have added a delete functionality to the webserver to demonstrate adding external JSON data to the database. Therefore, if when adding JSON data from a website a second time, use the delete form to remove those dates and re-add them if required. If data is inputted that is already in the database, the page shall not load due to a non-unique constraint. If wanting to insert the information still, either remove the specific data OR delete all the data using the two forms at the bottom.
 
-I have added a delete functionality to the webserver to demonstrate adding external JSON data to the database. Therefore, if when adding JSON data from a website a second time, use the delete form to remove those dates and re-add them if required.
+The functions that display all the temperatures, the max temperate and the minimum temperature all have an input text box that they do not require. Removing this input textbox causes the database to show historic data, and will only show new information upon restarting. Therefore I have left them in, even if they look out of place. 
 
-The show all function of the form sometimes does not update once a new temperature has been added, though all other functions do. To have this correctly show recently added data, the server must be restarted. 
-
-*************************************
-ISSUES
-When new data is inserted, the functions to display (all, the max, the mix) temperatures sometimes do now show the uddated information. However when querying the database for the new data, the results appear confirming that the data has been added.
-
-Once the server is restarted, these functions show previously inserted data.
