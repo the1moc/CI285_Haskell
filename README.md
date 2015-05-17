@@ -50,6 +50,7 @@ I have added a delete functionality to the webserver to demonstrate adding exter
 
 *********************************
 CRITIQUES
+
 When requesting for the minimum temperature or the max temperature when the database is empty, there is an internal SQL error due to no data being found when the MAX and MIN function are called. I was not sure how to process an error coming in the SQL and return an appropriate error to the user. The error is shown in the console, and the page fails to load on the user end. However the functions work perfectly when their is data in the database.
 
 The user of unsafePerformIO was not ideal for the responses. However, because the only data that can be returned from the function is a list of temperatures, it seemed safe enough to use.
