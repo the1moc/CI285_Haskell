@@ -53,8 +53,6 @@ CRITIQUES
 
 When requesting for the minimum temperature or the max temperature when the database is empty, there is an internal SQL error due to no data being found when the MAX and MIN function are called. I was not sure how to process an error coming in the SQL and return an appropriate error to the user. The error is shown in the console, and the page fails to load on the user end. However the functions work perfectly when their is data in the database.
 
-When adding duplicate data, the page shall not load due to an SQL error. To rectify this, for example wanting to re-enter all the JSON data, you can use the delete all function, or the delete specific function.
-
 The user of unsafePerformIO was not ideal for the responses. However, because the only data that can be returned from the function is a list of temperatures, it seemed safe enough to use.
 
 A final critique is I should have seperated the IO code from the view code, having all of the interactions within the database in an external function, and not within the blaze code.
