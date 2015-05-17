@@ -23,7 +23,7 @@ If more was to be added, I think adding options for users to input specific requ
 BUILDING THE APPLICATION
 
 PRE-REQUISITES
-Ensure all modules are installed that are required for the project. These should/may include, but are not limited to:
+Ensure all modules are installed that are required for the project. These include, but are not limited to:
 happstack,
 aeson,
 HTTP-4000,
@@ -48,6 +48,10 @@ NOTES
 
 I have added a delete functionality to the webserver to demonstrate adding external JSON data to the database. Therefore, if when adding JSON data from a website a second time, use the delete form to remove those dates and re-add them if required. If data is inputted that is already in the database, the page shall not load due to a non-unique constraint. If wanting to insert the information still, either remove the specific data OR delete all the data using the two forms at the bottom.
 
-The functions that display all the temperatures, the max temperate and the minimum temperature all have an input text box that they do not require. Removing this input textbox causes the database to show historic data, and will only show new information upon restarting. Therefore I have left them in, even if they look out of place. 
+*********************************
+CRITIQUES
+When requesting for the minimum temperature or the max temperature when the database is empty, there is an internal SQL error due to no data being found when the MAX and MIN function are called. I was not sure how to process an error coming in the SQL and return an appropriate error to the user. The error is shown in the console, and the page fails to load on the user end. However the functions work perfectly when their is data in the database.
 
-The PDF submitted is old, but I am not able to change it. The issues highlighted about errors within certain functions that query the database have been resolved.
+The user of unsafePerformIO was not ideal for the responses. However, because the only data that can be returned from the function is a list of temperatures, it seemed safe enough to use.
+
+A final critique is I should have seperated the IO code from the view code, having all of the interactions within the database in an external function, and not within the blaze code.
