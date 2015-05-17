@@ -39,9 +39,13 @@ Any packages not named that are required will also need to be installed. One met
 
 Current data in the database is shown below:
 
-12-03-1996 -- 3°C
-12-03-1997 -- 13°C
-12-03-1998 -- 19°C
+12-12-2012 -- 13°C
+
+
+14-04-1991 -- 4°C
+
+
+01-09-2001 -- 17°C
 
 *********************************
 NOTES
